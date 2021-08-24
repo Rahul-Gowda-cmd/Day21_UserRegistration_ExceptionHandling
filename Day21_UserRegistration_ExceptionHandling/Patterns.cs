@@ -9,6 +9,7 @@ namespace Day21_UserRegistration_ExceptionHandling
     {
         public static string REGEX_FIRSTNAME = "^[A-Z]{1}[a-z]{2,}";
         public static string REGEX_LASTNAME = "[A-Z]{1}[a-z]{2,}";
+        public static string REGEX_EMAILID = "^[0-9a-zA-Z]+[.+-_]{0,1}[0-9a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]{2,3}([.][a-zA-Z]{2,3}){0,1}";
         public bool ValidateFirstName(string firstName)
         {
             if (firstName == null)
@@ -25,5 +26,14 @@ namespace Day21_UserRegistration_ExceptionHandling
             }
             return Regex.IsMatch(lastName, REGEX_LASTNAME);
         }
+        public bool ValidateEmailId(string emailId)
+        {
+            if (emailId == null)
+            {
+                throw new UserRegistrationCustomException(UserRegistrationCustomException.ExceptionsType.Invalid_MESSAGE, "Invalid Email ID");
+            }
+            return Regex.IsMatch(emailId, REGEX_EMAILID);
+        }
+
     }
 }
